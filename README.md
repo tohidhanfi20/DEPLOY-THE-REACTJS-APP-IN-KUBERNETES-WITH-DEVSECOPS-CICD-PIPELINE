@@ -9,7 +9,7 @@ image
 
 # Step 2 —
 
-# 2A - Install Jenkins
+# Step 2 (A) - Install Jenkins
 
      sudo apt update -y
 
@@ -43,7 +43,7 @@ Create a user click on save and continue.
 
 image
 
-# 2B — Install Docker and setup Sonarqube
+# Step 2 (B) — Install Docker and setup Sonarqube
 
     sudo apt update -y
 
@@ -82,7 +82,7 @@ Update New password, This is Sonar Dashboard.
 
 image
 
-# 2C — Install Trivy [ IAC ]
+# Step 2 (C) — Install Trivy [ IAC ]
 
      sudo apt-get install wget apt-transport-https gnupg lsb-release
      wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
@@ -90,10 +90,10 @@ image
      sudo apt-get update
      sudo apt-get install trivy
 
-Step 3 — Install Plugins like JDK, Sonarqube Scanner,
+# Step 3 — Install Plugins like JDK, Sonarqube Scanner,
 NodeJS, OWASP Dependency Check
 
-# 3A — Install Plugin
+# Step 3 (A) — Install Plugin
 
 Go to Manage Jenkins →Plugins → Available Plugins →
 Install below plugins
@@ -103,14 +103,14 @@ Install below plugins
 
 3 → NodeJS Plugin (Install Without restart)
 
-# 3B — Configure Java and Nodejs in Global Tool Configuration
+# Step 3 (B) — Configure Java and Nodejs in Global Tool Configuration
 
 Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→
 Click on Apply and Save
 
 image
 
-# 3C — Create a Job
+# Step 3 (C) — Create a Job
 
 create a job as Devsecops_demo Name, select pipeline and click ok.
 
