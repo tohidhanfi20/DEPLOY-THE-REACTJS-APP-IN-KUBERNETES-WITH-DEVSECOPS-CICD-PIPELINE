@@ -59,7 +59,7 @@ export const App = () => {
         </p>
       </div>
       <div className="footer">
-        Made with ❤️ by{" "}
+        Made with ❤️ by{" Tohid Hanfi "}
         <a
           href="https://www.youtube.com/channel/UCJV16_5c4A0amyBZSI4yP6A"
           target="_blank"
