@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/tohidhanfi20/DEPLOY-THE-REACTJS-APP-IN-KUBERNETES-WITH-DEVSECOPS-CICD-PIPELINE'
+                git branch: 'main', url: 'https://github.com/tohidhanfi20/DEPLOY-THE-REACTJS-APP-IN-KUBERNETES-WITH-DEVSECOPS-CICD-PIPELINE.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -38,17 +38,11 @@ pipeline{
                 sh "npm install"
             }
         }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
+stage('OWASP FS SCAN') {
             steps {
-                dependencyCheck additionalArguments: ''' 
-                    -o "./" 
-                    -s "./"
-                    -f "ALL" 
-                    --prettyPrint''', odcInstallation: 'OWASP-DC'
-
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                }
-            }     
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
         }
         stage('TRIVY FS SCAN') {
             steps {
@@ -76,6 +70,8 @@ stage('Deploy to container'){
                 sh 'docker run -d --name 2048 -p 3000:3000 tohidaws/devsecops_ad:latest'
             }
         }
+
+    }
 
     }
 }
