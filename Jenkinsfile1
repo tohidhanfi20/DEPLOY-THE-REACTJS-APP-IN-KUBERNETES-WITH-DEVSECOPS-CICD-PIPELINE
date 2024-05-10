@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/AWS-AZURE-Bootcamp5/Devsecops-Project1.git'
+                git branch: 'master', url: 'https://github.com/tohidhanfi20/DEPLOY-THE-REACTJS-APP-IN-KUBERNETES-WITH-DEVSECOPS-CICD-PIPELINE'
             }
         }
         stage("Sonarqube Analysis "){
@@ -54,20 +54,20 @@ stage("Docker Build & Push"){
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t devsecops_ad ."
-                       sh "docker tag devsecops_ad praveensingam1994/devsecops_ad:latest "
-                       sh "docker push praveensingam1994/devsecops_ad:latest "
+                       sh "docker tag devsecops_ad tohidaws/devsecops_ad:latest "
+                       sh "docker push tohidaws/devsecops_ad:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image praveensingam1994/devsecops_ad:latest > trivy.txt" 
+                sh "trivy image tohidaws/devsecops_ad:latest > trivy.txt" 
             }
         }
 stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name 2048 -p 3000:3000 praveensingam1994/devsecops_ad:latest'
+                sh 'docker run -d --name 2048 -p 3000:3000 tohidaws/devsecops_ad:latest'
             }
         }
 stage('Deploy to kubernets'){
