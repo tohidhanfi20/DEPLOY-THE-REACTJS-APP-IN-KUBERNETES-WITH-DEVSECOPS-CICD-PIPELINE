@@ -5,7 +5,7 @@ This game (2048) was built using **React** and **TypeScript**. The unique part o
 
 # STEP 1 : Launch an Ubuntu(22.04) T2 Large Instance
 
-image
+
 
 # Step 2 —
 
@@ -33,15 +33,15 @@ server get the password
 
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-image
+
 
 UNLOCK JENKINS
 
-image
+
 
 Create a user click on save and continue.
 
-image
+
 
 # Step 2 (B) — Install Docker and setup Sonarqube
 
@@ -68,11 +68,11 @@ After the docker installation, we created a Sonarqube container
 
     docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
-image
+
 
 Now our Sonarqube is up and running
 
-image
+
 
 Enter username and password, click on login and change password
 
@@ -80,7 +80,7 @@ username admin / password admin
 
 Update New password, This is Sonar Dashboard.
 
-image
+
 
 # Step 2 (C) — Install Trivy [ IAC ]
 
@@ -97,6 +97,7 @@ NodeJS, OWASP Dependency Check
 
 Go to Manage Jenkins →Plugins → Available Plugins →
 Install below plugins
+
 1 → Eclipse Temurin Installer (Install without restart)
 
 2 → Sonarqube Scanner (Install without restart)
@@ -108,7 +109,7 @@ Install below plugins
 Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→
 Click on Apply and Save
 
-image
+
 
 # Step 3 (C) — Create a Job
 
@@ -124,23 +125,13 @@ Goto your Sonarqube Server.
 Click on Administration → Security → Users → Click on Tokens and
 Update Token → Give it a name → and click on Generate Token
 
-image
-
-image
-
 copy Token
 
 Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret
 Text. It should look like this
 
-image
-
-image
-
 Now, go to Dashboard → Manage Jenkins → System and Add like the
 below image.
-
-image
 
 Click on Apply and Save
 
@@ -152,21 +143,11 @@ install using Plugins
 
 We will install a sonar scanner in the tools.
 
-image
-
 In the Sonarqube Dashboard add a quality gate also
 
 Administration → Configuration →Webhooks
 
-image
-
-image
-
 Add details
-
-image
-
-image
 
 Let’s go to our Pipeline and add the script in our Pipeline Script.
 
@@ -174,30 +155,28 @@ https://github.com/tohidhanfi20/DEPLOY-THE-REACTJS-APP-IN-KUBERNETES-WITH-DEVSEC
 
 Click on Build now, you will see the stage view like this
 
-image
 
 # Step 5 — Install OWASP Dependency Check Plugins
 
 Go to Dashboard → Manage Jenkins → Plugins → OWASP
 Dependency-Check. Click on it and install it without restart.
 
-image
 
 First, we configured the Plugin and next, we had to configure the Tool
 
 Go to Dashboard → Manage Jenkins → Tools →
 
-image
+
 
 Now go configure → Pipeline and add OWASP and TRIVY stage to your
 pipeline and build.
 
-image
+
 
 You will see that in status, a graph will also be generated and
 Vulnerabilities.
 
-image
+
 
 # Step 6 — Docker Image Build and Push
 
@@ -218,13 +197,13 @@ for Docker and install these plugins
 
 Now, goto Dashboard → Manage Jenkins → Tools →
 
-image
+
 
 Add Docker Hub Username and Password under Global Credentials
 
-image
 
-image
+
+
 
 Now Run the container to see if the game coming up or not by adding
 below stage
