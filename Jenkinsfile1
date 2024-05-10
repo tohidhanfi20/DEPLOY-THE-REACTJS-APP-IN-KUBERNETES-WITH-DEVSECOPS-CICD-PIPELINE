@@ -38,10 +38,17 @@ pipeline{
                 sh "npm install"
             }
         }
-stage('OWASP FS SCAN') {
+        stage ('OWASP Dependency-Check Vulnerabilities') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit',
-            }
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'OWASP-DC'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                }
+            }     
         }
         stage('TRIVY FS SCAN') {
             steps {
