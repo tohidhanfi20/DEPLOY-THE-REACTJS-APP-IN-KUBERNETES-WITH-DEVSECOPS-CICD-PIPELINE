@@ -38,7 +38,7 @@ pipeline{
                 sh "npm install"
             }
         }
-stage('OWASP FS SCAN') {
+        stage('OWASP FS SCAN') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
@@ -49,7 +49,7 @@ stage('OWASP FS SCAN') {
                 sh "trivy fs . > trivyfs.txt"
             }
         }
-stage("Docker Build & Push"){
+        stage("Docker Build & Push"){
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
@@ -65,7 +65,7 @@ stage("Docker Build & Push"){
                 sh "trivy image tohidaws/devsecops_ad:latest > trivy.txt" 
             }
         }
-stage('Deploy to container'){
+        stage('Deploy to container'){
             steps{
                 sh 'docker run -d --name 2048 -p 3000:3000 tohidaws/devsecops_ad:latest'
             }
